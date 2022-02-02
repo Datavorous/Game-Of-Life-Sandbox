@@ -6,6 +6,7 @@
 Color texts = {60,60,60,255};
 Color background = {20,20,20,255};
 Color cells = {255,255,255,255};
+Color gridlinecolor = {30,30,30,255};
 
 const int LEN = SCREEN_SIDE / CELL_SIDE;
 
@@ -14,6 +15,7 @@ int grid2[LEN][LEN] = {{0}};
 
 bool run = true;
 bool show_info = true;
+bool showGridLines = false;
 short toggle_color = 1;
 
 
@@ -135,8 +137,25 @@ void mouseActions()
         randomDistribution();
     if (IsKeyPressed(KEY_I))
         show_info = !show_info;
+    if (IsKeyPressed(KEY_L))
+        showGridLines = !showGridLines;
 }
 
+
+void drawLIneGrid(Color gridColor)
+{
+    for (int i = 0;i<LEN ; i++ )
+        DrawLine(
+            i*CELL_SIDE,0,
+            i*CELL_SIDE,SCREEN_SIDE,
+            gridColor);
+    
+    for (int i2 = 0; i2 < LEN; i2++)
+        DrawLine(
+            0,i2*CELL_SIDE,
+            SCREEN_SIDE,i2*CELL_SIDE,
+            gridColor);
+}
 
 
 int main(void)
@@ -152,6 +171,8 @@ int main(void)
         drawGrid();
         if (show_info)
             showInfo(texts);
+        if (showGridLines)
+            drawLIneGrid(gridlinecolor);
         
         EndDrawing();
         
