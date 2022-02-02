@@ -1,22 +1,26 @@
 #include "raylib.h"
 
-#define SCREEN_SIDE 600
-#define CELL_SIDE 8
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 450
 
-Color texts = {60,60,60,255};
+#define CELL_SIDE 4
+
+Color texts = {255,255,255,255};
 Color background = {20,20,20,255};
 Color cells = {255,255,255,255};
 Color gridlinecolor = {30,30,30,255};
 
-const int LEN = SCREEN_SIDE / CELL_SIDE;
+const int LEN_COLUMN = SCREEN_HEIGHT / CELL_SIDE;
+const int LEN_ROW = SCREEN_WIDTH / CELL_SIDE;
 
-int grid[LEN][LEN] = {{0}};
-int grid2[LEN][LEN] = {{0}};
+int grid[LEN_ROW][LEN_COLUMN] = {{0}};
+int grid2[LEN_ROW][LEN_COLUMN] = {{0}};
 
 bool run = true;
 bool show_info = true;
 bool showGridLines = false;
 short toggle_color = 1;
+
 
 
 
@@ -27,9 +31,9 @@ double mapVal(double value,double istart,double istop,double ostart,double ostop
 
 void implementRules()
 {
-    for(int row=1;row<=LEN-2;row++)
+    for(int row=1;row<=LEN_ROW-2;row++)
         {
-            for(int column=1;column<=LEN-2;column++)
+            for(int column=1;column<=LEN_COLUMN-2;column++)
                 {
                     int alive = 0;
 
@@ -53,29 +57,29 @@ void implementRules()
 
 void clearGrids()
 {
-    for (int i = 0;i<LEN ;i++ )
-        for (int j=0;j<LEN ;j++ )
+    for (int i = 0;i<LEN_ROW ;i++ )
+        for (int j=0;j<LEN_COLUMN ;j++ )
             grid[i][j] = grid2[i][j];
     
-    for (int i = 0;i<LEN ;i++ )
-        for (int j=0;j<LEN ;j++ )
+    for (int i = 0;i<LEN_ROW ;i++ )
+        for (int j=0;j<LEN_COLUMN;j++ )
             grid2[i][j] = 0;
 }
 
 
 void drawGrid()
 {
-    for(int row=0; row<LEN; row++)
-        for(int column=0; column<LEN; column++)
+    for(int row=0; row<LEN_ROW; row++)
+        for(int column=0; column<LEN_COLUMN; column++)
             {
                 if (toggle_color==1)
-                    cells = (Color){mapVal(row,0,LEN,0,255),mapVal(column,0,LEN,0,255),255,255};
+                    cells = (Color){mapVal(row,0,LEN_ROW,0,255),mapVal(column,0,LEN_COLUMN,0,255),255,255};
 
                 else if (toggle_color==2)
-                    cells = (Color){mapVal(row,0,LEN,0,255),255,mapVal(column,0,LEN,0,255),255};
+                    cells = (Color){mapVal(row,0,LEN_ROW,0,255),255,mapVal(column,0,LEN_COLUMN,0,255),255};
                 
                 else if (toggle_color==3)
-                    cells = (Color){255,mapVal(row,0,LEN,0,255),mapVal(column,0,LEN,0,255),255};
+                    cells = (Color){255,mapVal(row,0,LEN_ROW,0,255),mapVal(column,0,LEN_COLUMN,0,255),255};
                 
                 if (grid[row][column]==1)
                     DrawRectangle(row*CELL_SIDE, column*CELL_SIDE, CELL_SIDE, CELL_SIDE, cells); 
@@ -86,7 +90,7 @@ void drawGrid()
 void showInfo(Color tc)
 {
     DrawText(TextFormat("FPS: %03i", GetFPS()), 3, 8, 14, tc);
-    DrawText(TextFormat("Cells: %04i", LEN*LEN), 3, 24,14, tc);
+    DrawText(TextFormat("Cells: %04i", LEN_ROW*LEN_COLUMN), 3, 24,14, tc);
 
     if (run)
         DrawText("Paused: No", 3, 40, 14, tc);
@@ -98,8 +102,8 @@ void showInfo(Color tc)
 
 void randomDistribution()
 {
-    for (int i = 0;i<LEN ;i++ )
-        for (int j=0;j<LEN ;j++ )
+    for (int i = 0;i<LEN_ROW ;i++ )
+        for (int j=0;j<LEN_COLUMN ;j++ )
             grid[i][j] = GetRandomValue(0, 1);
 }
 
@@ -120,9 +124,9 @@ void mouseActions()
 
     if (IsKeyDown(KEY_F))
     {
-        if (IsKeyPressed(KEY_D))
+        if (IsKeyPressed(KEY_L))
             SetTargetFPS(GetFPS()/2);
-        else if (IsKeyPressed(KEY_I))
+        else if (IsKeyPressed(KEY_H))
             SetTargetFPS(GetFPS()*2);
     }
 
@@ -137,23 +141,25 @@ void mouseActions()
         randomDistribution();
     if (IsKeyPressed(KEY_I))
         show_info = !show_info;
-    if (IsKeyPressed(KEY_L))
+    if (IsKeyPressed(KEY_G))
         showGridLines = !showGridLines;
+
+    
 }
 
 
 void drawLIneGrid(Color gridColor)
 {
-    for (int i = 0;i<LEN ; i++ )
+    for (int i = 0;i<LEN_ROW ; i++ )
         DrawLine(
             i*CELL_SIDE,0,
-            i*CELL_SIDE,SCREEN_SIDE,
+            i*CELL_SIDE,SCREEN_HEIGHT,
             gridColor);
     
-    for (int i2 = 0; i2 < LEN; i2++)
+    for (int i2 = 0; i2 < LEN_COLUMN; i2++)
         DrawLine(
             0,i2*CELL_SIDE,
-            SCREEN_SIDE,i2*CELL_SIDE,
+            SCREEN_WIDTH,i2*CELL_SIDE,
             gridColor);
 }
 
@@ -161,19 +167,20 @@ void drawLIneGrid(Color gridColor)
 int main(void)
 {
     
-    InitWindow(SCREEN_SIDE, SCREEN_SIDE, "Game Of Life"); 
-    
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game Of Life"); 
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
         
         ClearBackground(background);
         drawGrid();
-        if (show_info)
-            showInfo(texts);
+        
         if (showGridLines)
             drawLIneGrid(gridlinecolor);
-        
+        if (show_info)
+            showInfo(texts);
+
         EndDrawing();
         
         if (run)
