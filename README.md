@@ -1,14 +1,13 @@
 # Game Of Life Sandbox
 Written in C with raylib
 
-## Build from source 
-Need to write 
+## Demo
+write
 
 ## Controls
 write
 
-## Demo
-write
-
+## Build from source 
+Need to write 
 
 
