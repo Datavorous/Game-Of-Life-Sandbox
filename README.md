@@ -1,6 +1,6 @@
 <h1 align="center">
 Game Of Life Sandbox</h1>
-<p align="center">Written in C with raylib • Customisable • Simple • Minimalistic</p>
+<p align="center">Written in C with <a href="https://raylib.com">raylib</a> • Customisable • Simple • Minimalistic</p>
 
 ## Screenshots
 <img src="https://github.com/Datavorous/Game-Of-Life-Sandbox/blob/main/media/PicsArt_02-06-10.29.51.jpg?raw=true">
@@ -29,7 +29,7 @@ As it's having no GUI at present, everything depends upon key presses and key co
 
 #### Method 2
 + Follow this <a href="https://youtu.be/u6LXRF-iMg8">video</a>
-+ Download raylib, mingw compiler, and the files and folders of this repo
++ Download <a href="https://raylib.com">raylib</a>, mingw compiler, and the files and folders of this repo
 + Place the right stuffs in ```gol/include``` and ```gol/lib``` folders
 + Run ```gol/build.bat```
 
