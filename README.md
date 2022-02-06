@@ -8,16 +8,17 @@ Game Of Life Sandbox</h1>
 ## Controls
 As it's having no GUI at present, everything depends upon key presses and key combinations
 <br>Here's the list: 
-* ```Space``` : pause 
-* ```Left mouse button``` : place an alive cell in the grid
-* ```Right mouse button``` : make an alive cell dead in the grid
+* ```Space``` : pauses/plays
+* ```Left mouse button``` : places an alive cell in the grid
+* ```Right mouse button``` : makes an alive cell dead in the grid
 * ```Enter``` : kills all the cells in the grid
 * ```f``` with ```l``` : decreases fps to 1/2 times of the current fps
 * ```f``` with ```h``` : increases fps to 2 times of the current fps 
-* ```c``` : toggle between 6 color themes
+* ```c``` : toggles between 6 color themes
 * ```r``` : randomly distribute alive cells in the grid
-* ```i``` : show info
-* ```g``` : draw line grids
+* ```i``` : shows info
+* ```g``` : draws line grids
+* ```z``` : draws two red lines to indicate the centre of the grid
 
 ## Build from source 
 Need to write 
