@@ -3,7 +3,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 450
 
-#define CELL_SIDE 4
+#define CELL_SIDE 2
 
 Color texts = {255,255,255,255};
 Color background = {20,20,20,255};
@@ -17,9 +17,9 @@ int grid[LEN_ROW][LEN_COLUMN] = {{0}};
 int grid2[LEN_ROW][LEN_COLUMN] = {{0}};
 
 bool run = true;
-bool show_info = true;
+bool shouldShowInfo = false;
 bool showGridLines = false;
-short toggle_color = 1;
+short toggleColor = 1;
 
 
 
@@ -55,7 +55,7 @@ void implementRules()
 }
 
 
-void clearGrids()
+void updateGridValues()
 {
     for (int i = 0;i<LEN_ROW ;i++ )
         for (int j=0;j<LEN_COLUMN ;j++ )
@@ -72,14 +72,21 @@ void drawGrid()
     for(int row=0; row<LEN_ROW; row++)
         for(int column=0; column<LEN_COLUMN; column++)
             {
-                if (toggle_color==1)
+                if (toggleColor==1)
                     cells = (Color){mapVal(row,0,LEN_ROW,0,255),mapVal(column,0,LEN_COLUMN,0,255),255,255};
 
-                else if (toggle_color==2)
+                else if (toggleColor==2)
                     cells = (Color){mapVal(row,0,LEN_ROW,0,255),255,mapVal(column,0,LEN_COLUMN,0,255),255};
                 
-                else if (toggle_color==3)
+                else if (toggleColor==3)
                     cells = (Color){255,mapVal(row,0,LEN_ROW,0,255),mapVal(column,0,LEN_COLUMN,0,255),255};
+
+                else if (toggleColor==4)
+                    cells = (Color){222,61,40,255};
+
+                else if (toggleColor==5)
+                    cells = (Color){181,242,138,255};
+
                 
                 if (grid[row][column]==1)
                     DrawRectangle(row*CELL_SIDE, column*CELL_SIDE, CELL_SIDE, CELL_SIDE, cells); 
@@ -96,7 +103,7 @@ void showInfo(Color tc)
         DrawText("Paused: No", 3, 40, 14, tc);
     else
         DrawText("Paused: Yes", 3, 40, 14, tc);
-    DrawText(TextFormat("Color Theme: %01i",toggle_color), 3, 56, 14, tc);
+    DrawText(TextFormat("Color Theme: %01i",toggleColor), 3, 56, 14, tc);
 
 }
 
@@ -120,7 +127,7 @@ void mouseActions()
         grid[(int)(GetMouseX()/CELL_SIDE)][(int)(GetMouseY()/CELL_SIDE)] = 0;
 
     if (IsKeyPressed(KEY_ENTER))
-        clearGrids();
+        updateGridValues();
 
     if (IsKeyDown(KEY_F))
     {
@@ -132,19 +139,17 @@ void mouseActions()
 
     if (IsKeyPressed(KEY_C))
     {                
-        if (toggle_color>3)
-            toggle_color = 0;
-        toggle_color++;
+        if (toggleColor>5)
+            toggleColor = 0;
+        toggleColor++;
     }
 
     if (IsKeyPressed(KEY_R))
         randomDistribution();
     if (IsKeyPressed(KEY_I))
-        show_info = !show_info;
+        shouldShowInfo = !shouldShowInfo;
     if (IsKeyPressed(KEY_G))
-        showGridLines = !showGridLines;
-
-    
+        showGridLines = !showGridLines; 
 }
 
 
@@ -168,25 +173,32 @@ int main(void)
 {
     
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game Of Life"); 
+    //SetTargetFPS(15);
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
         
-        ClearBackground(background);
-        drawGrid();
-        
-        if (showGridLines)
-            drawLIneGrid(gridlinecolor);
-        if (show_info)
-            showInfo(texts);
+            ClearBackground(background);
+
+            drawGrid();
+            
+            if (showGridLines)
+                drawLIneGrid(gridlinecolor);
+            if (shouldShowInfo)
+                showInfo(texts);
+            if(IsKeyDown(KEY_Z))
+            {
+             DrawLine(0,SCREEN_HEIGHT/2,SCREEN_WIDTH,SCREEN_HEIGHT/2,(Color){255,0,0,255});
+             DrawLine(SCREEN_WIDTH/2,0,SCREEN_WIDTH/2,SCREEN_HEIGHT,(Color){255,0,0,255});
+            }
 
         EndDrawing();
         
         if (run)
         {   
             implementRules();
-            clearGrids();
+            updateGridValues();
         }   
         mouseActions();
     }
