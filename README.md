@@ -2,7 +2,7 @@
 Written in C with raylib
 
 ## Demo
-<img src="https://raw.githubusercontent.com/Datavorous/Game-Of-Life-Sandbox/main/media/PicsArt_02-06-10.23.05.jpg?token=GHSAT0AAAAAABQVAFMWFJ32K3NPAWZTF4TCYP7KUNQ">
+<img src="https://github.com/Datavorous/Game-Of-Life-Sandbox/blob/main/media/PicsArt_02-06-10.29.51.jpg?raw=true">
 
 ## Controls
 write
