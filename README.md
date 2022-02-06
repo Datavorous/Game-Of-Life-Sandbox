@@ -21,10 +21,10 @@ As it's having no GUI at present, everything depends upon key presses and key co
 * ```z``` : draws two red lines to indicate the centre of the grid
 
 ## Build from source 
-#### Windows
-Install raylib.
-Execute ```make``` in src 
-...
-...
+
+• Method 1
++ Install raylib.
++ Open notepad++ and paste the code
++ press F6
 
 
