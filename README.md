@@ -34,6 +34,6 @@ As it's having no GUI at present, everything depends upon key presses and key co
 + Run ```gol/build.bat```
 
 ## Contributions
-**Feel free to!!!!!** :D<br>
+**Feel free to make PRs!!!!!** :D<br>
 _Maybe a GUI?_
 
