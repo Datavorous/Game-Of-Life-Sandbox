@@ -22,9 +22,15 @@ As it's having no GUI at present, everything depends upon key presses and key co
 
 ## Build from source 
 
-• Method 1
+#### Method 1
 + Install raylib.
 + Open notepad++ and paste the code
 + press F6
+
+#### Method 2
++ Follow this <a href="https://youtu.be/u6LXRF-iMg8">video</a>
++ Download raylib, mingw compiler, and the files and folders of this repo
++ Place the right stuffs in include and lib folders
++ Run build.bat
 
 
