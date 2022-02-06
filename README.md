@@ -17,7 +17,7 @@ As it's having no GUI at present, everything depends upon key presses and key co
 * ```c``` : toggles between 6 color themes
 * ```r``` : randomly distribute alive cells in the grid
 * ```i``` : shows info
-* ```g``` : draws line grids
+* ```g``` : draws grid lines
 * ```z``` : draws two red lines to indicate the centre of the grid
 
 ## Build from source 
