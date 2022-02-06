@@ -2,7 +2,7 @@
 Game Of Life Sandbox</h1>
 <p align="center">Written in C with raylib • Customisable • Simple • Minimalistic</p>
 
-## Demo
+## Screenshots
 <img src="https://github.com/Datavorous/Game-Of-Life-Sandbox/blob/main/media/PicsArt_02-06-10.29.51.jpg?raw=true">
 
 ## Controls
@@ -14,7 +14,7 @@ As it's having no GUI at present, everything depends upon key presses and key co
 * ```Enter``` : kills all the cells in the grid
 * ```f``` with ```l``` : decreases fps to 1/2 times of the current fps
 * ```f``` with ```h``` : increases fps to 2 times of the current fps 
-* ```c``` : toggles between 6 color themes
+* ```c``` : toggles between 6 color themes (4 gradients, 2 colours)
 * ```r``` : randomly distribute alive cells in the grid
 * ```i``` : shows info
 * ```g``` : draws grid lines
@@ -33,4 +33,7 @@ As it's having no GUI at present, everything depends upon key presses and key co
 + Place the right stuffs in ```gol/include``` and ```gol/lib``` folders
 + Run ```gol/build.bat```
 
+## Contributions
+**Feel free to!!!!!** :D<br>
+_Maybe a GUI?_
 
