@@ -37,3 +37,5 @@ As it's having no GUI at present, everything depends upon key presses and key co
 **Feel free to make PRs!!!!!** :D<br>
 _Maybe a GUI?_
 
+#### Note
+Support raylib, only if you can, it's amazing!
