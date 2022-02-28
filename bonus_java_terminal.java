@@ -1,9 +1,8 @@
 
 class bonus_java_terminal
 {
-	public static int grid[][] = {};
-      
-        //Insert grid here from grid.txt
+	public static int grid[][] = {}; //< insert here
+        //Insert grid here ^ from grid.txt 
 	public static int grid2[][] = new int[grid.length][grid[0].length];
 
 	public static int generations = 100;
